@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
-const habitacionSchema = mongoose.Schema(
+const habitacionSchema = new mongoose.Schema(
     {
         tipo:{
             type:String,
             enum:["Simple", "Doble", "Triple","Cuádruple","Otras"],
-            require:true,
+            require:true
         },
         habitaculos:{type:Number, require:true},
         cantidad:{type:Number, require:true},

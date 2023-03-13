@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-const alojamientoSchema = mongoose.Schema(
+const alojamientoSchema = new mongoose.Schema(
     {
         nombre:{type:String, require:true},
         codigo:[{type:mongoose.Types.ObjectId, ref:"users"}],

@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const regioneSchema = new mongoose.Schema(
     {
-        nombre:{type:String,required:true, unique:true},
+        nombre:{type:String,required:true},
         portada:{type:String,require:true},
-        alojamientos:{type:mongoose.Types.ObjectId,ref:"alojamientos"}
+        alojamientos:[{type:mongoose.Types.ObjectId,ref:"alojamientos"}]
     },
     {
         timestamps: true,

@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
     {
         email: { type: String, require: true, unique: true, trim: true },
         password: { type: String, trim: true, require: true },
         rol: { type: String, default: "user", enum: ["user", "admin","property"], required: true},
-        propiedades: [{ type: mongoose.Types.ObjectId, ref: "alojamientos" }],
         codigo: {type: String, unique: true},
     }
 )

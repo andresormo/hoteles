@@ -1,14 +1,14 @@
 const { deleteFile } = require("../../middlewares/delete");
 const Habitaciones = require("./habitacion.models");
 
-const crearHabitacion = async(req,res,next)=>{
+const crearHabitacion = async (req,res,next)=>{
     try {
-        const newHabitacion = await new Habitaciones(req.body);
+        const newHabitacion = new Habitaciones(req.body);
         if(req.file){
             newHabitacion.foto = req.file.path;
         }
         await newHabitacion.save();
-        return res.status(200).json(newHabitacion);
+        return res.json(newHabitacion);
     } catch (error) {
         return next(error);
     }

@@ -4,7 +4,7 @@ const {crearHabitacion, getHabitacion,actualizarHabitacion} = require("./habitac
 
 const habitacionRouter = require("express").Router();
 
-habitacionRouter.post("/", crearHabitacion);
+habitacionRouter.post("/",upload.single("foto"), crearHabitacion);
 habitacionRouter.get("/",getHabitacion);
 habitacionRouter.put("/:id",upload.single("foto"), actualizarHabitacion);
 

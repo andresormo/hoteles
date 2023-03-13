@@ -2,7 +2,7 @@ const Alojamiento = require("./alojamiento.models");
 
 const getAllAlojamientos = async (req,res,next)=>{
     try {
-        const alojamiento = await Alojamiento.find().populate("regiones").populate("habitaciones").populate("users");
+        const alojamiento = await Alojamiento.find().populate("habitaciones").populate({path:"regiones",populate:{path:"alojamientos"}}).populate("codigo");
         return res.json(alojamiento);
     } catch (error) {
         return next(error);
@@ -12,7 +12,7 @@ const getAllAlojamientos = async (req,res,next)=>{
 const getAlojamientoById = async ( req, res, next)=>{
     try {
         const {id} = req.params;
-        const alojamiento = await Alojamiento.findById(id).populate("habitaciones");
+        const alojamiento = await Alojamiento.findById(id).populate("habitaciones").populate({path:"regiones",populate:{path:"alojamientos"}}).populate("codigo");
         if(!alojamiento){
             return res.json("No hemos encontrado ese alojamiento, id inexistente");
         }
@@ -25,7 +25,7 @@ const getAlojamientoById = async ( req, res, next)=>{
 const getAlojamientoNombre = async(req,res,next)=>{
     try {
         const {nombre} = req.params;
-        const alojamiento = await Alojamiento.findOne({nombre:nombre}).populate("habitaciones");
+        const alojamiento = await Alojamiento.findOne({nombre:nombre}).populate("habitaciones").populate({path:"regiones",populate:{path:"alojamientos"}}).populate("codigo");
         return res.json(alojamiento);
     } catch (error) {
         return next(error);
