@@ -8,7 +8,11 @@ const signUp = async (req, res, next) => {
         if (req.body.rol === "admin") {
             req.body.rol = "user"
         }
-
+        if(req.body.rol === "property"){
+            if(!req.body.codigo){
+                req.body.rol = "user"
+            }
+        }
         const newUser = new User(req.body);
         await newUser.save();
         return res.status(201).json(newUser);

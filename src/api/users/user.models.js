@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema(
         email: { type: String, require: true, unique: true, trim: true },
         password: { type: String, trim: true, require: true },
         rol: { type: String, default: "user", enum: ["user", "admin","property"], required: true},
-        codigo: {type: String, unique: true},
+        codigo: {type: String, unique: true, default:"No requiere", required:true},
     }
 )
 
